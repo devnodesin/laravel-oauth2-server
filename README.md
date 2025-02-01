@@ -2,8 +2,8 @@
 Clone or Download the Laravel Project
 
 ```bash
-git clone https://github.com/your-repo/project-name.git
-cd project-name
+git clone https://github.com/devnodesin/laravel-oauth2-server.git users
+cd users
 ```
 
 ## Install Dependencies
