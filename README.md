@@ -37,6 +37,7 @@ Run the following command to generate the application key:
 
 ```bash
 php artisan key:generate
+php artisan passport:keys
 ```
 
 ## Set Up the Database
