@@ -61,39 +61,60 @@ php artisan migrate
 php artisan db:seed
 ```
 
-## Debug
+## Debugging Guide
 
-```bash
+### 1. Environment Configuration
 
-php artisan migrate:refresh
-php artisan db:seed
-php artisan key:generate
-php artisan passport:keys --force
-
-
-ls -lah storage/oauth-*.key
-
-chmod 600 storage/oauth-*.key
-chown www-data:www-data storage/oauth-*.key  # For Linux
-
-```
+Verify these settings in your `.env` file:
 
 ```env
 PASSPORT_PRIVATE_KEY=storage/oauth-private.key
 PASSPORT_PUBLIC_KEY=storage/oauth-public.key
 ```
 
+### 2. Database & Key Setup
+
+```bash
+# Reset and seed database
+php artisan migrate:refresh
+php artisan db:seed
+
+# Generate application and OAuth keys
+php artisan key:generate
+php artisan passport:keys --force
+
+# Set proper permissions
+# For Windows:
+icacls storage/oauth-*.key /grant:r "%USERNAME%":F
+# For Linux:
+chmod 600 storage/oauth-*.key
+chown www-data:www-data storage/oauth-*.key
+```
+
+### 3. Clear Application Cache
+
 ```bash
 php artisan config:clear
 php artisan cache:clear
 php artisan session:clear
-php artisan token:clear
-
+php artisan route:clear
+php artisan view:clear
 php artisan config:cache
+```
 
+### 4. Server Restart
 
-php artisan queue:restart
+Optionally, you can restart your server:
 
+Windows (Laragon):
+
+```bash
+laragon restart
+```
+
+Linux:
+
+```bash
 sudo systemctl restart nginx
 sudo systemctl restart php-fpm
 ```
