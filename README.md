@@ -1,6 +1,6 @@
 # Laravel OAuth2 Server
 
-A full-featured OAuth2 authorization server implementation built with Laravel and Laravel Passport. This application serves as a reference implementation for securing your APIs and authenticating OAuth2 clients.
+A full-featured OAuth2 authorization server implementation built with Laravel and Laravel Passport. This application serves as a reference implementation for securing your APIs and authenticating [OAuth2 clients](https://github.com/devnodesin/laravel-oauth2-client).
 
 This implementation demonstrates:
 
