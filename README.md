@@ -1,3 +1,14 @@
+# Laravel OAuth2 Server
+
+A full-featured OAuth2 authorization server implementation built with Laravel and Laravel Passport. This application serves as a reference implementation for securing your APIs and authenticating OAuth2 clients.
+
+This implementation demonstrates:
+
+- Client credential management
+- Access token generation and validation  
+- Refresh token handling
+- Scope-based authorization
+- Protected API resources
 
 Clone or Download the Laravel Project
 
@@ -48,4 +59,41 @@ If the project includes seeders, run:
 ```bash
 php artisan migrate
 php artisan db:seed
+```
+
+## Debug
+
+```bash
+
+php artisan migrate:refresh
+php artisan db:seed
+php artisan key:generate
+php artisan passport:keys --force
+
+
+ls -lah storage/oauth-*.key
+
+chmod 600 storage/oauth-*.key
+chown www-data:www-data storage/oauth-*.key  # For Linux
+
+```
+
+```env
+PASSPORT_PRIVATE_KEY=storage/oauth-private.key
+PASSPORT_PUBLIC_KEY=storage/oauth-public.key
+```
+
+```bash
+php artisan config:clear
+php artisan cache:clear
+php artisan session:clear
+php artisan token:clear
+
+php artisan config:cache
+
+
+php artisan queue:restart
+
+sudo systemctl restart nginx
+sudo systemctl restart php-fpm
 ```
